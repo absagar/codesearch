@@ -1,0 +1,14 @@
+#python specific
+*.pyc
+*.pyo
+
+#hidden files
+.*
+*~
+
+#hide the index dir
+indexdir
+
+# allow the gitignore file
+!.gitignore
+

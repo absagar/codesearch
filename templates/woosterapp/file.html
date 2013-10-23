@@ -1,0 +1,62 @@
+{% load staticfiles %}
+
+<!--<script type="text/javascript" src="{% static "woosterapp/shCore.js" %}"></script>
+<script type="text/javascript" src="{% static "woosterapp/shBrushCpp.js" %}"></script>
+<link href="{% static "woosterapp/shCore.css" %}" rel="stylesheet" type="text/css" />
+<link href="{% static "woosterapp/shThemeDefault.css" %}" rel="stylesheet" type="text/css" /> -->
+<style type="text/css"> 
+	 #top-menu{ 
+                z-index:5; 
+                position: fixed;                 
+                width: 100%; 
+                color: #211; 
+		margin-left: -100px;      
+         } 
+	#all_text span.hilit{
+		text-decoration:underline;
+		background-color:yellow;    
+	}
+</style>
+<script type="text/javascript" src="{% static "woosterapp/jquery-1.7.2.min.js"%}"></script> 
+<script>
+var prevIndex=0;
+var highLight = function(query_term){
+	 prevIndex = 0;
+         var page = $('#all_text');
+         var pageText = page.text().replace("<span class='hilit'>","").replace("</span>");
+         var searchedText = query_term;
+         var theRegEx = new RegExp("("+searchedText+")", "igm");    
+         var newHtml = pageText.replace(theRegEx ,"<span class='hilit'>$1</span>");
+         page.html(newHtml);
+    };
+var next=function(){
+	var temp;
+	if (prevIndex>=0) temp = document.getElementsByClassName("hilit")[prevIndex++];
+	if (temp===undefined) {prevIndex=0;temp = document.getElementsByClassName("hilit")[prevIndex++];alert(temp.text());}
+	temp.scrollIntoView();
+},
+prev=function(){
+	var temp;
+	if (prevIndex>0) temp = document.getElementsByClassName("hilit")[prevIndex--];
+	if (temp===undefined) {var lst = document.getElementsByClassName("hilit"); prevIndex=lst.length-1; temp.className='currhilit';}
+	temp.scrollIntoView();
+};
+$(function(){ // this will be called when the DOM is ready
+$("#searchfor").keyup(function(){highLight($("#searchfor").val())});
+});
+</script>
+<body onload="highLight('{{query_term}}')">
+ <div id="top-menu"> 
+	<input type="text" id="searchfor" autofocus style="float: right; padding: 5px 10px;"/>
+	<button type="button" name="next" value="next" onclick="next()" style="float: right; padding: 5px 10px;">Next</button>
+	<button type="button" name="prev" value="prev" onclick="prev()" style="float: right; padding: 5px 10px;">Prev</button>
+</div> 
+<div id="filecontent">
+<pre class="format">
+<p id="all_text">
+{{filecontent}}
+</p>
+</pre>
+<div>
+
+</body>

@@ -1,0 +1,13 @@
+<a href="/whooster/">Back To Home</a>
+
+{% if results_list %}
+    <ul>
+    {% for result in results_list %}
+    	{% if result.filetype in filetypelist%}
+        	<li><a href="/whooster/file/{{result.docnum}}/">{{ result.path }}</a></li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No results. Did you mean ----TODO----?</p>
+{% endif %}

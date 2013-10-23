@@ -1,0 +1,10 @@
+<h1>{{ SearchPage }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="/whooster/results/" method="post">
+{% csrf_token %}
+<br>
+SearchInput: <input type="text" name="query_term">
+<input type="submit" value="Submit" />
+</form>
