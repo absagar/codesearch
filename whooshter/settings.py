@@ -117,7 +117,7 @@ TEMPLATE_DIRS = (
 
 INDEX_DIR = ('/home/absagar/workspace/whooshter/indexdir')
 EXT_LIST = ["cpp", "c", "h", "hpp", "txt"]
-BASE_PATH = "/home/absagar/acrplayer"
+BASE_PATH = "/media/absagar/Elements/monza"
 
 INSTALLED_APPS = (
     'django.contrib.auth',

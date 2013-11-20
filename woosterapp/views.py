@@ -23,6 +23,7 @@ def showfile(request, docnum):
     with ix.searcher() as searcher:
         alldocs = searcher.search(Every(), limit=None)
         with open(alldocs[int(docnum)]["path"]) as content_file:
+        #with open("/home/absagar/temp.jdf") as content_file:
             cont = content_file.read()
     return render_to_response('woosterapp/file.html', {
                                 'filecontent': cont,
